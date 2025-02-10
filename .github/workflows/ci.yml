@@ -32,4 +32,4 @@ jobs:
       - name: Run Robot Framework tests
         run: |
           mkdir -p results
-          robot --outputdir results /workspaces/APItest_Robot/tests
+          robot --outputdir results TESTS/
