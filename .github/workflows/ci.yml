@@ -28,8 +28,6 @@ jobs:
           pip install robotframework
           pip install robotframework-requests
           pip install robotframework-seleniumlibrary
-          pip install robotframework-stringlibrary
-          pip install robotframework-collections
 
       - name: Run Robot Framework tests
         run: |
