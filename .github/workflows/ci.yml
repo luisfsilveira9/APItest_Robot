@@ -33,3 +33,10 @@ jobs:
         run: |
           mkdir -p results
           robot --outputdir results TESTS/
+          
+      - name: Upload de Relatórios do Robot Framework
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: robot-framework-reports
+          path: results/
