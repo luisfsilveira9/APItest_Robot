@@ -40,7 +40,7 @@ APItest_Robot-main/
 ### Installation
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/APItest_Robot.git
+   git clone https://github.com/luisfsilveira9/APItest_Robot.git
    cd APItest_Robot
    ```
 2. Install dependencies:
@@ -76,6 +76,4 @@ This project is open-source and available under the MIT License.
 ---
 
 🎯 **Portfolio Project**: This project is part of my portfolio to demonstrate my API test automation skills using Robot Framework.
-
-Feel free to explore, fork, and contribute! 🚀
 
