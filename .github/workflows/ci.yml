@@ -28,15 +28,31 @@ jobs:
           pip install robotframework
           pip install robotframework-requests
           pip install robotframework-seleniumlibrary
+          pip install coverage
 
       - name: Run Robot Framework tests
         run: |
           mkdir -p results
-          robot --outputdir results TESTS/
-          
+          coverage run -m robot --outputdir results TESTS/
+
+      - name: Generate Coverage Report
+        run: coverage xml -o results/coverage.xml
+
+      - name: Upload Coverage Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-report
+          path: results/coverage.xml
+
       - name: Upload de Relatórios do Robot Framework
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: robot-framework-reports
           path: results/
+
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: results/coverage.xml
