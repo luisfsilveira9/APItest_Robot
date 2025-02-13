@@ -39,7 +39,7 @@ jobs:
         run: coverage xml -o results/coverage.xml
 
       - name: Upload Coverage Report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: coverage-report
           path: results/coverage.xml
@@ -52,7 +52,7 @@ jobs:
           path: results/
 
       - name: Upload Coverage to Codecov
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: results/coverage.xml
