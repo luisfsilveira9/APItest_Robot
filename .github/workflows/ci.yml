@@ -15,10 +15,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
@@ -28,15 +28,21 @@ jobs:
           pip install robotframework
           pip install robotframework-requests
           pip install robotframework-seleniumlibrary
+          pip install pytest pytest-cov
           pip install coverage
 
       - name: Run Robot Framework tests
         run: |
           mkdir -p results
-          coverage run -m robot --outputdir results TESTS/
+          robot --outputdir results TESTS/
 
       - name: Generate Coverage Report
-        run: coverage xml -o results/coverage.xml
+        run: |
+          coverage run -m pytest TESTS/
+          coverage xml -o results/coverage.xml
+
+      - name: Debug Coverage Report
+        run: cat results/coverage.xml
 
       - name: Upload Coverage Report
         uses: actions/upload-artifact@v4
@@ -52,7 +58,6 @@ jobs:
           path: results/
 
       - name: Upload Coverage to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
           files: results/coverage.xml
