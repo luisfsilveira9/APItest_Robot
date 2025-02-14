@@ -30,7 +30,6 @@ jobs:
           pip install robotframework-seleniumlibrary
           pip install pytest-cov
           pip install coverage
-          pip install robotframework-coverage
 
       - name: Run Robot Framework tests with Coverage
         run: |
