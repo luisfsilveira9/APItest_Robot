@@ -38,26 +38,26 @@ jobs:
 
       - name: Generate Coverage Report
         run: |
-          coverage run -m pytest TESTS/
-          coverage xml -o results/coverage.xml
+          coverage run -m pytest TESTS/api/
+          coverage xml -o TESTS/results/coverage.xml
 
       - name: Debug Coverage Report
-        run: cat results/coverage.xml
+        run: cat TESTS/results/coverage.xml
 
       - name: Upload Coverage Report
         uses: actions/upload-artifact@v4
         with:
           name: coverage-report
-          path: results/coverage.xml
+          path: TESTS/results/coverage.xml
 
       - name: Upload de Relatórios do Robot Framework
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: robot-framework-reports
-          path: results/
+          path: TESTS/results/
 
       - name: Upload Coverage to Codecov
         uses: codecov/codecov-action@v5
         with:
-          files: results/coverage.xml
+          files: TESTS/results/coverage.xml
